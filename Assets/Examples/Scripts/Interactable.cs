@@ -11,9 +11,23 @@ namespace Liminal.Examples
     {
         public UnityEvent OnClick;
 
+        [SerializeField] BubbleTracker tracker;
+
+        void Start()
+        {
+            tracker = FindObjectOfType<BubbleTracker>();
+        }
+
         public void OnPointerClick(PointerEventData eventData)
         {
             OnClick.Invoke();
+        }
+
+        public void DestroyThis()
+        {
+            Destroy(this.gameObject);
+
+            tracker.BubblePopped();
         }
     }
 }
