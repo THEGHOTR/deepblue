@@ -111,6 +111,7 @@ MonoBehaviour:
   gameobject: {fileID: 4401463299046466196}
   rotating: 0
   moving: 0
+  spawnLocation: {x: 5, y: -5, z: 25}
 --- !u!1 &4401463299046466196
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +197,19 @@ PrefabInstance:
     - target: {fileID: 461792, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114122306394498882, guid: b5ea624fac4bcb44f96ad51d3745727e,
+        type: 3}
+      propertyPath: x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812458, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812458, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}
+      propertyPath: useRigidbodyForVelocity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}

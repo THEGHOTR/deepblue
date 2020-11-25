@@ -6,7 +6,7 @@ public class BubbleMovement : MonoBehaviour
 {
     public float movementSpeed = 1;
 
-    private float scaleProgress = 0;
+    public float scaleProgress = 0;
 
     public float timeScale = 0.5f;
 

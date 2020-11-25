@@ -13,6 +13,8 @@ public class BubbleTracker : MonoBehaviour
 
     public int maxBubblesActive;
 
+    public float countdownTimer;
+
     public GameObject Bubble;
 
     public GameObject newBubble;
@@ -23,6 +25,7 @@ public class BubbleTracker : MonoBehaviour
     public GameObject Biolume2;
     public GameObject Biolume3;
     public GameObject Biolume4;
+    public GameObject Biolume5;
 
     public Text BubblesInteractedText;
 
@@ -31,9 +34,9 @@ public class BubbleTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnBubble());
-
         BubblesActive = GameObject.FindGameObjectsWithTag("Bubble").Length;
+
+        StartCoroutine(CountdownTimer());
     }
 
     // Update is called once per frame
@@ -43,6 +46,11 @@ public class BubbleTracker : MonoBehaviour
 
         BubblesActiveText.text = "Bubbles Active: " + BubblesActive.ToString() + "/" + maxBubblesActive.ToString();
 
+        if(countdownTimer > 0)
+        {
+            countdownTimer -= 1 * Time.deltaTime;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             BubblePopped();
@@ -51,18 +59,21 @@ public class BubbleTracker : MonoBehaviour
 
     public void SpawnParticle()
     {
-        Vector3 origin = new Vector3(0, -5, 0);
+        Vector3 origin = new Vector3(0, 0, 0);
 
         switch (BubblesInteracted)
         {
             case 5:
                 Debug.Log("Last one");
+                newBiolume = Instantiate(Biolume5, origin, transform.rotation);
                 break;
             case 4:
                 Debug.Log("Four");
+                newBiolume = Instantiate(Biolume4, origin, transform.rotation);
                 break;
             case 3:
                 Debug.Log("Three");
+                newBiolume = Instantiate(Biolume3, origin, transform.rotation);
                 break;
             case 2:
                 newBiolume = Instantiate(Biolume2, origin, transform.rotation);
@@ -87,11 +98,20 @@ public class BubbleTracker : MonoBehaviour
         SpawnParticle();
     }
 
+    IEnumerator CountdownTimer()
+    {
+        yield return new WaitForSeconds(countdownTimer);
+
+        StartCoroutine(SpawnBubble());
+
+        yield break;
+    }
+
     IEnumerator SpawnBubble()
     {
         while (true)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(10);
 
             Vector3 newPosition = new Vector3(Random.Range(-5f, 5f), transform.position.y - 5f, transform.position.z + 2f);
 
