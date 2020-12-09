@@ -111,7 +111,10 @@ MonoBehaviour:
   gameobject: {fileID: 4401463299046466196}
   rotating: 0
   moving: 0
+  endLocation: {x: 0, y: 0, z: 0}
   spawnLocation: {x: 5, y: -5, z: 25}
+  timeScale: 0.5
+  scaleProgress: 0
 --- !u!1 &4401463299046466196
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4401463299046466219
 Transform:
   m_ObjectHideFlags: 0
@@ -210,6 +213,10 @@ PrefabInstance:
     - target: {fileID: 19812458, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}
       propertyPath: useRigidbodyForVelocity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812458, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ea624fac4bcb44f96ad51d3745727e, type: 3}

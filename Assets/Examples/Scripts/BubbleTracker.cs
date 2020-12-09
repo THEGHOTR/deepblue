@@ -15,11 +15,17 @@ public class BubbleTracker : MonoBehaviour
 
     public float countdownTimer;
 
+    private Vector3 origin = new Vector3(0, 0, 0);
+
     public GameObject Bubble;
 
     public GameObject newBubble;
 
     public GameObject newBiolume;
+    public GameObject newBiolume2;
+    public GameObject newBiolume3;
+    public GameObject newBiolume4;
+    public GameObject newBiolume5;
 
     public GameObject Biolume1;
     public GameObject Biolume2;
@@ -30,13 +36,32 @@ public class BubbleTracker : MonoBehaviour
     public Text BubblesInteractedText;
 
     public Text BubblesActiveText;
-    
+
+    [SerializeField] whale whalesound;
+
     // Start is called before the first frame update
     void Start()
     {
         BubblesActive = GameObject.FindGameObjectsWithTag("Bubble").Length;
 
+        whalesound = FindObjectOfType<whale>();
+
         StartCoroutine(CountdownTimer());
+
+        newBiolume = Instantiate(Biolume1, origin, transform.rotation);
+        Biolume1.SetActive(false);
+
+        newBiolume2 = Instantiate(Biolume2, origin, transform.rotation);
+        Biolume2.SetActive(false);
+
+        newBiolume3 = Instantiate(Biolume3, origin, transform.rotation);
+        Biolume3.SetActive(false);
+
+        newBiolume4 = Instantiate(Biolume4, origin, transform.rotation);
+        Biolume4.SetActive(false);
+
+        newBiolume5 = Instantiate(Biolume5, origin, transform.rotation);
+        Biolume5.SetActive(false);
     }
 
     // Update is called once per frame
@@ -59,28 +84,27 @@ public class BubbleTracker : MonoBehaviour
 
     public void SpawnParticle()
     {
-        Vector3 origin = new Vector3(0, 0, 0);
-
         switch (BubblesInteracted)
         {
             case 5:
-                Debug.Log("Last one");
-                newBiolume = Instantiate(Biolume5, origin, transform.rotation);
+                newBiolume5.SetActive(true);
+                Debug.Log("Last one");              
                 break;
             case 4:
-                Debug.Log("Four");
-                newBiolume = Instantiate(Biolume4, origin, transform.rotation);
+                newBiolume4.SetActive(true);
+                Debug.Log("Four");              
                 break;
             case 3:
-                Debug.Log("Three");
-                newBiolume = Instantiate(Biolume3, origin, transform.rotation);
+                newBiolume3.SetActive(true);
+                whalesound.audiodata.Play();
+                Debug.Log("Three");                
                 break;
             case 2:
-                newBiolume = Instantiate(Biolume2, origin, transform.rotation);
+                newBiolume2.SetActive(true);
                 Debug.Log("Two");
                 break;
             case 1:
-                newBiolume = Instantiate(Biolume1, origin, transform.rotation);
+                newBiolume.SetActive(true);
                 Debug.Log("One");
                 break;
             case 0:

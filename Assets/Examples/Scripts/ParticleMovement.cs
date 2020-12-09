@@ -22,7 +22,7 @@ public class ParticleMovement : MonoBehaviour
 
     public float timeScale = 0.5f;
 
-    public float scaleProgress = 0;
+    public float movementSpeed = 1f;
     
     // Start is called before the first frame update
     void Start()
@@ -42,10 +42,12 @@ public class ParticleMovement : MonoBehaviour
 
         if (moving)
         {
-            location = Vector3.Lerp(location, endLocation, scaleProgress);
+            transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed);
+        }
 
-            scaleProgress += Time.deltaTime * timeScale;
-
+        if(location == endLocation)
+        {
+            transform.position = spawnLocation;
         }
         
     }
